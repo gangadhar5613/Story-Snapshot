@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/user');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/user', require('./routes/user'));
 
 
 
