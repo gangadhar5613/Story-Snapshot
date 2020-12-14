@@ -1,0 +1,29 @@
+{
+  "name": "story-snapshot",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "tw:build": "tailwindcss build ./public/stylesheets/css/tailwind.css -o ./public/stylesheets/tailwind.css",
+    "tw:watch": "onchange 'tailwind.config.js' 'public/stylesheets/**/*.css'  -- npm run tw:build -- node ./bin/www"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.1.0",
+    "bcrypt": "^5.0.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "~1.4.4",
+    "cssnano": "^4.1.10",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "mongoose": "^5.11.7",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "onchange": "^7.1.0",
+    "postcss": "^8.2.1",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.2"
+  }
+}
