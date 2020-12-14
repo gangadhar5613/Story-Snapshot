@@ -2,6 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 let bcrypt = require('bcrypt');
 const { use } = require('../routes');
+let auth = require('../middlewares/auth');
 
 
 let userSchema = new Schema({
