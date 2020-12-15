@@ -27,23 +27,23 @@ router.post('/register',(req,res,next) => {
 
 //login
 router.get('/login',(req,res) => {
-  res.render('login');
+  res.render('login',{flashMessage : req.flash('flashMsg')} );
 })
 
 router.post('/login',(req,res,next) => {
  const {email,password} = req.body;
  if(!email || !password){
-   //req.flash('flashMsg',Please enter valid email and password)
+  //  req.flash('flashMsg',"Please enter valid email and password")
    res.redirect('/login')
  }
  User.findOne({email},(err,user) => {
     if(err) return next();
     if(!user){
-      //req.flash('flashMsg',Please enter valid email and password)
+      // req.flash('flashMsg',"Please enter valid email and password")
       res.redirect('/login')
     }
     if(!user.verifyPassword(password)){
-        //req.flash('flashMsg',Please enter valid details)
+        // req.flash('flashMsg',"Please enter valid details")
         res.redirect('/login')
     }
     req.session.userId = user.id;
@@ -52,6 +52,8 @@ router.post('/login',(req,res,next) => {
  
 })
 
+
+//dashboard
 router.get('/dashboard',(req,res,next) => {
   res.render('userDashboard')
 })

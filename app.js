@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(session({
   secret:'secret about application',
   saveUninitialized:false,
-  resave:false,
+  resave:true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
