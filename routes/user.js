@@ -54,8 +54,5 @@ router.post('/login',(req,res,next) => {
 
 
 //dashboard
-router.get('/dashboard',(req,res,next) => {
-  res.render('userDashboard')
-})
 
 module.exports = router;

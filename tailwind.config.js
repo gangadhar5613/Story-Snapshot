@@ -1,3 +1,6 @@
+const plugin = require('tailwindcss/plugin');
+
+
 module.exports = {
   purge: [{
     mode:'layers',
@@ -12,8 +15,11 @@ module.exports = {
           blue:'#49AADE',
           gray:'#222222'
         }
+      },
+      fontFamily:{
+        body:['Teko']
       }
-    },
+    },    
   },
   variants: {
     extend: {},

@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/tailwind.css">
 </head>
 <body>
-    <h2>Login Page</h2>
+    <article class="flex flex-col justify-center items-center h-screen">
+        <section class="my-10 w-50  relative left-20">
+            <div class="w-1/2">
+                <img src="/images/blacklogo.png" alt="logo">
+            </div>
+        </section>
+        <section class="my-10">
+            <div class="text-center">
+                <h2 class="text-4xl my-2 font-bold">Login</h2>
+            </div>
+            <div>
+                <form action="/users/login" method="POST" class="flex flex-col w-96 ">
+                    <input type="email" name="email" id="email" placeholder="Enter email" required class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-900 focus:text-white w-96 focus:shadow-inner">
+                    <input type="password" name="password" id="password" placeholder="Set Password" required class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-900 focus:text-white w-96 focus:shadow-inner">
+                    <input type="submit" id="submit" value="LogIn" class="my-3 py-3 text-2xl font-bold cursor-pointer bg-gray-900 text-white    items-center " >
+                </form>
+            </div>
+            <div class="login-btn-section text-center my-3">
+                <span class="text-1xl font-bold">Not an registered user? <a class="px-2 bg-black text-white py-1" href="/user/register">Register</a></span>
+            </div>
+        </section>
+    </article>
 </body>
 </html>

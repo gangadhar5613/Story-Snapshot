@@ -33,7 +33,7 @@ app.use(cookieParser());
 
 app.use(session({
   secret:'secret about application',
-  saveUninitialized:false,
+  saveUninitialized:true,
   resave:true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.use('/', require('./routes/index'));
 app.use('/user', require('./routes/user'));
-
+app.use('/dashboard',require('./routes/dashboard'))
 
 
 
