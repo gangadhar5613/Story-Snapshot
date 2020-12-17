@@ -4,6 +4,9 @@ let User = require('../models/User');
 const Story = require('../models/story');
 var multer = require('multer');
 const auth = require('../middlewares/auth');
+const Comment = require('../models/Comment');
+
+
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './public/images/upload');
@@ -15,8 +18,21 @@ var storage = multer.diskStorage({
 var upload = multer({ storage : storage })
 
 
-router.get('/', function(req, res, next) {
-    res.render('storiesList');
+
+
+
+
+//list all stories from different users
+router.get('/',auth.verifyLoggedInUser,(req, res, next) => {
+   
+    Story.find({}).populate('author').exec((err,stories) => {
+        if(err) return next();
+       
+        res.render('allStories',{stories: stories});
+        
+    })
+   
+    
   });
 
 router.get('/new',(req,res,next) => {
@@ -42,27 +58,83 @@ router.post('/new',upload.single('snapshot'),auth.verifyLoggedInUser,(req,res,ne
 })
 
 //edit story
-router.get('/:id/edit',(req,res,next) => {
+router.get('/:id/edit',auth.verifyLoggedInUser,(req,res,next) => {
     const id = req.params.id;
-    Story.findById(id,(err,story) => {
+    Story.findByIdAndUpdate(id,(err,story) => {
         if(err) return next();
-        res.render('editStory')
+        res.render('storyEdit',{story: story})
     })
 })
 
 
+//edit article
 router.post('/:id/edit',(req,res,next) => {
     let id = req.params.id
     Story.findByIdAndRemove(id,req.body,{new:true},(err,updatedStory) => {
         if(err) return next();
-        res.redirect('/userDashboard')
+        res.redirect('/userDashboard');
+
+    })
+})
+
+//see story view
+router.get('/:id',auth.verifyLoggedInUser,(req,res) => {
+    let id = req.params.id
+    req.body.author = req.user;
+   console.log(req.user);
+    Story.findById(id,(err,story) => {
+        if(err) return next();
+      Comment.find({articleId : id},(err,comments) => {
+        res.render('storyView',{story : story,currentUser : req.user,comments : comments});
+      })
+
+       
+    })
+   
+})
+
+// router.get('/:id/edit',(req,res,next) => {
+//     let id = req.params.id;
+//     Story.findById(id,(err,story) => {
+//         if(err) return next();
+//         res.render('storyEdit',{story : story})
+//     })
+    
+// })
+
+
+
+
+
+
+router.get('/:id/delete',(req,res,next) => {
+    let id = req.params.id;
+    Story.findByIdAndDelete(id,(err,deletedArticle) => {
+        if(err) return next();
+        res.redirect('/dashboard')
     })
 })
 
 
 
-router.get('/:id',(req,res) => {
-    res.render('storyView')
-})
+//comments
+
+router.post('/:id/comments',auth.verifyLoggedInUser,(req,res,next) => {
+
+    let id = req.params.id;
+
+    req.body.articleId = id;
+    let currentUser = req.user;
+    req.body.authorId = currentUser;
+    console.log('here is the id' + req.body.authorId);
+  
+      Comment.create(req.body,(err,comment) => {
+        if(err) return next();       
+          res.redirect(`/stories/`+ id);
+          next();
+        })   
+  })
+
+
   
   module.exports = router;

@@ -16,9 +16,9 @@
         <section class="nav">
             <nav>
                 <ul class="text-white flex flex-row justify-between text-2xl">
-                    <li class="mx-4"><a href="#">Home</a></li>
+                    <li class="mx-4"><a href="/">Home</a></li>
                     <li class="mx-4"><a href="/stories">Stories</a></li>
-                    <li class="mx-4"><a href="#">User</a></li>
+                    <li class="mx-4"><a href="/dashboard">User</a></li>
                     <li class="mx-4"><a href="#">LogOut</a></li>
                 </ul>
             </nav>
@@ -26,11 +26,8 @@
     </header>
     <main class="font-body">
           <article class="stories-section mx-10 my-10">
-            <section class="text-right my-2 ">
-                <h2 class="text-2xl bg-black text-white p-2 inline-block font-bold"><a href="/stories/new">Add New Story</a></h2>
-            </section>
             <section class="text-center my-5 ">
-                <h2 class="text-3xl font-bold">My Stories</h2>
+                <h2 class="text-3xl font-bold">All stories listed from different users</h2>
             </section>
             <section class="grid grid-cols-2 mx-10 items-center justify-center border-solid border-3 border-light-blue-500 ">
             <% if(stories == ''){  %>
@@ -50,10 +47,6 @@
                                   <p class="text-black font-bold py-1 leading-none"><%= story.author.name %></p>
                                   <p class="text-grey-dark"><%= story.createdAt %></p>
                                 </div>
-                            </div>
-                            <div class="edit-update-buttons  text-center">
-                                <a class="bg-black text-1xl   px-2 text-white p-2 mx-2" href="/stories/<%= story.id %>/edit">Edit</a>
-                                <a class="bg-black text-1xl px-2 text-white p-2 mx-2" href="/stories/<%= story.id %>/delete">Delete</a>
                             </div>
                         </div>
                     </section>

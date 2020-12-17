@@ -4,8 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story View</title>
+    <link rel="stylesheet" href="/stylesheets/tailwind.css">
 </head>
-<body>
-    
+<body class="">
+    <header class="flex flex-row bg-black justify-between items-center font-body ">
+        <section class="logo-section w-30 px-3 py-1">
+            <div class="">
+                <img class="w-3/12" src="/images/blacklogo.png" alt="snapshot logo">
+            </div>
+        </section>
+        <section class="nav">
+            <nav>
+                <ul class="text-white flex flex-row justify-between text-2xl">
+                    <li class="mx-4"><a href="#">Home</a></li>
+                    <li class="mx-4"><a href="/stories">Stories</a></li>
+                    <li class="mx-4"><a href="/dashboard">User</a></li>
+                    <li class="mx-4"><a href="#">LogOut</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <main>
+        <article class="full-story-section flex flex-col justify-center mx-4 my-2 items-center">
+            <section class="image-section w-4/12 h-4/12  bg-black p-2 my-1 ">
+                <div class="img-background">
+                    <img src="/images/upload/<%= story.snapshot %>" alt="">
+                </div>
+            </section>
+            <section class="text-section my-1">
+                 <div class="title-section text-center">
+                     <h2 class="text-4xl font-bold py-4">"<%= story.title %>"</h2>
+                 </div>
+                 <div class="py-2">
+                     <h3 class="text-2xl font-bold underline">Story</h3>
+                 </div>
+                 <div class="description-section bg-gray-700 text-white p-2 ">
+                     
+                     <p class="story-description   font-normal"><%= story.description%></p>
+                 </div>
+                 <div class="text-2xl font-bold underline my-4">
+                    <h4>Tags:</h4>
+                 </div>
+                 <div class="story-tags ">
+                     <% story.tags.forEach((tag) => { %>
+                         <span class="bg-black text-white my-4 p-2 "><%= tag %></span>
+                   <%  }) %>
+                 </div>
+            </section>
+        </article>
+        <article class="comment-append-section">
+             <%   if(comments == ''){ %>
+                    <h2 class="text-1xl font-bold py-2">No one added of their thoughts yet,you can be the first</h2>
+             <%   }else{ %>
+                   <%   comments.forEach((comment) => { %>
+                        <section class="bg-black text-white p-2 mx-3">
+                            <div class="user-section">
+                               <img class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4" src="/images/upload/<%= story.snapshot %>" alt="">
+                               <h2><%= currentUser.name %></h2>
+                            </div>
+                            <div class="comment-section">
+                                <p><%= comment.comment %></p>
+                            </div>
+                        </section> 
+                    <%  }) %>
+            <%    } %>
+        </article>
+        <article class="comment-section ">
+            <section class="comment-form mx-3">
+                <form action="/stories/<%= story.id %>/comments" method="POST" class="flex flex-col">
+                    <textarea class="mx-1 border-solid border-4 my-2 border-light-blue-500 " name="comment" id="" cols="20" rows="6" placeholder="Add your thoughts about this snapshot"></textarea>
+                    <input class="w-1/2 my-3 bg-black text-white py-2 cursor-pointer" type="submit" name="submit" id="submit" value="Add">
+                </form>
+            </section>
+        </article>
+    </main>
 </body>
 </html>

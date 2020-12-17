@@ -17,7 +17,7 @@
                 <nav>
                     <ul class="text-white flex flex-row justify-between text-2xl">
                         <li class="mx-4"><a href="#">Home</a></li>
-                        <li class="mx-4"><a href="/stories">Stories</a></li>
+                        <li class="mx-4"><a href="#">Stories</a></li>
                         <li class="mx-4"><a href="/dashboard">Dashboard</a></li>
                         <li class="mx-4"><a href="#">LogOut</a></li>
                     </ul>
@@ -26,15 +26,15 @@
         </header>
         <main class="h-screen">
             <section class="text-3xl text-center my-4">
-                <h2>Add new story for your snapshot</h2>
+                <h2>Edit your snapshot</h2>
             </section>
             <section class="addstory-section my-2  flex flex-row justify-center ">
-                <form class="flex flex-col w-1/2 " enctype="multipart/form-data" action="/stories/new" method="POST">
+                <form class="flex flex-col w-1/2 " enctype="multipart/form-data" action="/stories/<%= story.id %>" method="POST">
                     <input class="w-full border-solid border-l  border-gray-300" type='file'  name="snapshot" value="Upload Image">
-                    <input class="w-full hover:bg-gray-700 hover:text-white  my-3 py-3 outline-none   border-solid border-4 border-light-black" type="text" name="title" id="" placeholder="Add your title">
-                    <textarea class="w-full hover:bg-gray-700 hover:text-white outline-none border-solid border-4 border-light-black" name="description" id="" cols="30" rows="13" placeholder="Add description"></textarea>
-                    <input class="w-full py-3 my-3 hover:bg-gray-700 hover:text-white outline-none border-solid border-4 border-light-black" type="text" name="tags" placeholder="Add tags">
-                    <input class="w-full py-3 bg-black text-white cursor-pointer" type="submit" id="submit" >
+                    <input class="w-full hover:bg-gray-700 hover:text-white  my-3 py-3 outline-none   border-solid border-4 border-light-black" type="text" name="title" id="" value="<%= story.title %>" placeholder="Add your title">
+                    <textarea class="w-full hover:bg-gray-700 hover:text-white outline-none border-solid border-4 border-light-black" name="description" id="" cols="30" rows="13" placeholder="Add description"><%= story.description %></textarea>
+                    <input class="w-full py-3 my-3 hover:bg-gray-700 hover:text-white outline-none border-solid border-4 border-light-black" type="text" name="tags" value="<%= story.tags %>" placeholder="Add tags">
+                    <input class="w-full py-3 bg-black text-white cursor-pointer" type="submit" value="Update" id="submit" >
                 </form>
             </section>
         </main>

@@ -9,7 +9,14 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 var multer = require('multer')
 
-
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://ngreddy:632145@cluster0.yogyw.mongodb.net/snapshot?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
 //conncting to mongodb using mongoose
 mongoose.connect('mongodb+srv://ngreddy:632145@cluster0.yogyw.mongodb.net/snapshot?retryWrites=true&w=majority',{useUnifiedTopology:true,useNewUrlParser:true},
@@ -42,10 +49,10 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
-app.use((req,res,next) => {
- console.log(req.session)
- next();
-})
+// app.use((req,res,next) => {
+//  console.log(req.session)
+//  next();
+// })
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -56,6 +63,7 @@ app.use('/user', require('./routes/user'));
 app.use('/stories',require('./routes/stories'))
 app.use('/dashboard',require('./routes/dashboard'))
 app.use('/logout',require('./routes/logout'))
+
 
 
 

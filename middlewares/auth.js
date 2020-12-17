@@ -13,6 +13,7 @@ module.exports = {
             next();
         }else{
             res.redirect('/user/login')
+            
         }
     },
 
