@@ -9,7 +9,7 @@ let storySchema = new Schema({
     likes:{type:Number},
     comments:[{type:Schema.Types.ObjectId,ref:'Comment'}],
     tags:[{type:String}],
-    author:{type:Schema.Types.ObjectId, ref:'User'}
+    author:{type:Schema.Types.ObjectId,required:true, ref:'User'}
 },{timestamps:true})
 
 

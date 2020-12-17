@@ -12,7 +12,7 @@ var multer = require('multer')
 
 
 //conncting to mongodb using mongoose
-mongoose.connect('mongodb://localhost/story-snapshot',{useUnifiedTopology:true,useNewUrlParser:true},
+mongoose.connect('mongodb+srv://ngreddy:632145@cluster0.yogyw.mongodb.net/snapshot?retryWrites=true&w=majority',{useUnifiedTopology:true,useNewUrlParser:true},
 (err) => {
   console.log(err ? err : 'Database is connected');
 });
@@ -38,14 +38,14 @@ app.use(cookieParser());
 app.use(session({
   secret:'secret about application',
   saveUninitialized:false,
-  resave:true,
+  resave:false,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
-// app.use((req,res,next) => {
-//  console.log(req.session)
-//  next();
-// })
+app.use((req,res,next) => {
+ console.log(req.session)
+ next();
+})
 app.use(express.static(path.join(__dirname, 'public')));
 
 

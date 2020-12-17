@@ -7,6 +7,9 @@ let User = require('../models/User');
 module.exports = {
     verifyLoggedInUser :(req,res,next) => {
         if(req.session && req.session.id){
+            
+            req.user = req.session.userId;
+            console.log(req.user)
             next();
         }else{
             res.redirect('/user/login')
@@ -19,7 +22,8 @@ module.exports = {
            User.findById(userId,{name:1,email:1},(err,user) => {
                  req.user = user;
                  next();
-                 console.log(req.user)
+                 console.log('from current' + req.user)
+                 console.log('user id'+ req.user)
            })
        }else{
            req.user = null;

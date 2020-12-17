@@ -3,9 +3,10 @@ let router = express.Router();
 let User = require('../models/User');
 const Story = require('../models/story');
 var multer = require('multer');
+const auth = require('../middlewares/auth');
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'upload');
+        cb(null, './public/images/upload');
      },
     filename: function (req, file, cb) {
         cb(null , file.originalname);
@@ -20,15 +21,22 @@ router.get('/', function(req, res, next) {
 
 router.get('/new',(req,res,next) => {
     res.render('addNewStory')
-    console.log(req.file)
+    
 })
 
 //create story
-router.post('/new',upload.single('snapshot'),(req,res,next) => {
+router.post('/new',upload.single('snapshot'),auth.verifyLoggedInUser,(req,res,next) => {
+    req.body.snapshot = req.file.filename;
+    req.body.author = req.user;
   Story.create(req.body,(err,story) => {
+      
+      console.log(story);
+     console.log(req.user);
       if(err) return next();
+      
       console.log(req.file)
-      res.redirect('/dashboard')
+      res.redirect('/dashboard');
+      
       
   })
 })
@@ -51,5 +59,10 @@ router.post('/:id/edit',(req,res,next) => {
     })
 })
 
+
+
+router.get('/:id',(req,res) => {
+    res.render('storyView')
+})
   
   module.exports = router;

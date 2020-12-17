@@ -32,75 +32,26 @@
             <section class="text-center my-5 ">
                 <h2 class="text-3xl font-bold">My Stories</h2>
             </section>
-            <section class="grid grid-cols-3 gap-4 ">
-            <section class="max-w-lg w-full lg:flex mx-2 ">
-                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-center bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/images/img1.jpg')" title="its image">
-                </div>
-                <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                        <h3 class="text-black font-bold text-xl mb-2">This pic makes to think about my past !.</h3>
-                        <p class="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+            <section class="grid grid-cols-2 gap-4 border-solid border-3 border-light-blue-500 ">
+            <% stories.forEach((story) => { %>
+                <section class="max-w-lg w-full lg:flex mx-2 ">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-center bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden p-1" style="background-image: url('/images/upload/<%= story.snapshot %>')" title="its image">
                     </div>
-                    <div class="flex items-center">
-                        <img class="w-10 h-10 rounded-full mr-4" src="/images/img1.jpg" alt="Avatar of Jonathan Reinink">
-                        <div class="text-sm">
-                          <p class="text-black leading-none">Jonathan Reinink</p>
-                          <p class="text-grey-dark">Aug 18</p>
+                    <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                        <div class="mb-8">
+                            <h3 class="text-black font-bold text-xl mb-2"><a href="/stories/<%= story.id %>"><%=  story.title %></a></h3>
+                            <p class="text-grey-darker truncate py-4 font-semibold text-base"><a href="/stories/<%= story.id %>"><%= story.description.substring(0,70) %></a></p>
+                        <div class="flex items-center py-2">
+                            <img class="w-10 h-10 rounded-full mr-4" src="/images/upload/<%= story.snapshot%>" alt="Avatar of Jonathan Reinink">
+                            <div class="text-sm">
+                              <p class="text-black font-bold py-1 leading-none"><%= story.author.name %></p>
+                              <p class="text-grey-dark"><%= story.createdAt %></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section class="max-w-lg w-full lg:flex mx-2 ">
-                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-center bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/images/img1.jpg')" title="its image">
-                </div>
-                <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                        <h3 class="text-black font-bold text-xl mb-2">This pic makes to think about my past !.</h3>
-                        <p class="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-                    </div>
-                    <div class="flex items-center">
-                        <img class="w-10 h-10 rounded-full mr-4" src="/images/img1.jpg" alt="Avatar of Jonathan Reinink">
-                        <div class="text-sm">
-                          <p class="text-black leading-none">Jonathan Reinink</p>
-                          <p class="text-grey-dark">Aug 18</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="max-w-lg w-full lg:flex mx-2 ">
-                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-center bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/images/img1.jpg')" title="its image">
-                </div>
-                <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                        <h3 class="text-black font-bold text-xl mb-2">This pic makes to think about my past !.</h3>
-                        <p class="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-                    </div>
-                    <div class="flex items-center">
-                        <img class="w-10 h-10 rounded-full mr-4" src="/images/img1.jpg" alt="Avatar of Jonathan Reinink">
-                        <div class="text-sm">
-                          <p class="text-black leading-none">Jonathan Reinink</p>
-                          <p class="text-grey-dark">Aug 18</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="max-w-lg w-full lg:flex mx-2 ">
-                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-center bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/images/img1.jpg')" title="its image">
-                </div>
-                <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                        <h3 class="text-black font-bold text-xl mb-2">This pic makes to think about my past !.</h3>
-                        <p class="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-                    </div>
-                    <div class="flex items-center">
-                        <img class="w-10 h-10 rounded-full mr-4" src="/images/img1.jpg" alt="Avatar of Jonathan Reinink">
-                        <div class="text-sm">
-                          <p class="text-black leading-none">Jonathan Reinink</p>
-                          <p class="text-grey-dark">Aug 18</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            <% }) %>   
+
             </section>
           </article>
     </main>
