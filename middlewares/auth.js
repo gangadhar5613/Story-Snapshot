@@ -19,6 +19,7 @@ module.exports = {
            User.findById(userId,{name:1,email:1},(err,user) => {
                  req.user = user;
                  next();
+                 console.log(req.user)
            })
        }else{
            req.user = null;

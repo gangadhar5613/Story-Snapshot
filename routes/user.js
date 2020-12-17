@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-let User = require('../models/User');
-let flash = require('connect-flash');
+const express = require('express');
+const router = express.Router();
+const User = require('../models/User');
+const flash = require('connect-flash');
+const auth = require('../middlewares/auth')
 
 router.use(flash());
 
@@ -19,7 +20,8 @@ router.get('/register',(req,res,next) => {
 router.post('/register',(req,res,next) => {   
   User.create(req.body,(err,user) => {
     if(err) return next();
-    res.redirect('/userDashboard');
+    res.redirect('/user/login');
+    console.log(user);
   })
 })
 
@@ -27,30 +29,36 @@ router.post('/register',(req,res,next) => {
 
 //login
 router.get('/login',(req,res) => {
-  res.render('login',{flashMessage : req.flash('flashMsg')} );
+  // let flashMessage = req.flash('flashMsg')
+  res.render('login' );
 })
 
 router.post('/login',(req,res,next) => {
  const {email,password} = req.body;
  if(!email || !password){
   //  req.flash('flashMsg',"Please enter valid email and password")
-   res.redirect('/login')
+   res.redirect('/user/login')
  }
  User.findOne({email},(err,user) => {
     if(err) return next();
     if(!user){
       // req.flash('flashMsg',"Please enter valid email and password")
-      res.redirect('/login')
+      res.redirect('/user/login')
     }
     if(!user.verifyPassword(password)){
         // req.flash('flashMsg',"Please enter valid details")
-        res.redirect('/login')
+       return res.redirect('/user/login')
     }
     req.session.userId = user.id;
-    res.redirect('/user/dashboard');
+    res.redirect('/dashboard');
+    console.log(req.session.userId)
  })
  
 })
+
+
+
+
 
 
 //dashboard

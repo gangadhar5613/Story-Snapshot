@@ -18,6 +18,7 @@ userSchema.pre('save',function(next){
             if(err) return next();
             this.password = hash;
             next();
+            console.log(hash);
         })
     }else{
         next();
@@ -26,7 +27,7 @@ userSchema.pre('save',function(next){
 
 
 
-userSchema.verifyPassword = function(password){
+userSchema.methods.verifyPassword = function(password){
     return bcrypt.compareSync(password,this.password);
 }
 

@@ -2,10 +2,13 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+var logger = require("morgan")
+const bodyParser = require('body-parser')
 const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
+var multer = require('multer')
+
 
 
 //conncting to mongodb using mongoose
@@ -26,18 +29,23 @@ app.set('view engine', 'ejs');
 
 
 //middlewares
-app.use(logger('dev'));
+app.use(logger("tiny"))
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(session({
   secret:'secret about application',
-  saveUninitialized:true,
+  saveUninitialized:false,
   resave:true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
+// app.use((req,res,next) => {
+//  console.log(req.session)
+//  next();
+// })
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -45,7 +53,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.use('/', require('./routes/index'));
 app.use('/user', require('./routes/user'));
+app.use('/stories',require('./routes/stories'))
 app.use('/dashboard',require('./routes/dashboard'))
+app.use('/logout',require('./routes/logout'))
 
 
 
