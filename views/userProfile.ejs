@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile</title>
+        <link rel="stylesheet" href="/stylesheets/tailwind.css">
+    </head>
+    <body>
+        <header class="flex flex-row bg-black justify-between items-center font-body ">
+            <section class="logo-section w-30 px-3 py-1">
+                <div class="">
+                    <img class="w-3/12" src="/images/blacklogo.png" alt="snapshot logo">
+                </div>
+            </section>
+            <section class="nav">
+                <nav>
+                    <ul class="text-white flex flex-row justify-between text-2xl">
+                        <li class="mx-4"><a href="#">Home</a></li>
+                        <li class="mx-4"><a href="/stories">Stories</a></li>
+                        <li class="mx-4"><a href="/dashboard">dashboard</a></li>
+                        <li class="mx-4"><a href="/logout">LogOut</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </header>
+        <main>
+            <section class="text-center my-2 ">
+                <h2 class="text-3xl font-bold ">My Profile</h2>
+            </section>
+            <article class="user-profile-section flex flex-col justify-center items-center ">
+                <section class="flex flex-col justify-center mx-10  my-10">
+                    <div class="profile-image p-1 w-20 my-4 h-20 mx-10 rounded">
+                        <img class="w-20 h-20 rounded-full  " src="/images/upload/<%= user.profilePic %>" alt="user profile image">
+                    </div>
+                    <div class="upload-profile-pic ">
+                       <form action="/user/profile/<%= user.id %>" method="POST" enctype="multipart/form-data" class="flex flex-col">
+                           <input class="my-4" type="file" name="profilePic" id="profilePic" required placeholder="Upload" >
+                           <input class="w-6/12 bg-black text-white cursor-pointer my-4 p-2 " type="submit" name="submit" id="submit" value="Upload Profile Pic" placeholder="Upload Profile Pic">
+                       </form>
+                    </div>
+                </section>
+                <section class="user-articles-likes mx-5 flex flex-row  ">
+                    <div class="user-details mx-2">
+                        <h2 class="text-white p-2 bg-black text-2xl ">Name: <strong class="text-red-600"><%= user.name %></strong></h2>
+                        <h2 class="text-white p-2 bg-black text-2xl">Email: <strong class="text-red-600"><%= user.email %></strong></h2>
+                    </div>
+                    <div class="user-articles-count">
+                          <h3 class="stories-count bg-black text-white p-1">Total Stories written: <span class="text-red-600 text-2xl "><%= stories.length %></span></h3>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </body>
+</html>

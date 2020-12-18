@@ -3,23 +3,19 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 var logger = require("morgan")
+const env = require('dotenv');
 const bodyParser = require('body-parser')
 const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-var multer = require('multer')
+var multer = require('multer');
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://ngreddy:632145@cluster0.yogyw.mongodb.net/snapshot?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
 
-//conncting to mongodb using mongoose
-mongoose.connect('mongodb+srv://ngreddy:632145@cluster0.yogyw.mongodb.net/snapshot?retryWrites=true&w=majority',{useUnifiedTopology:true,useNewUrlParser:true},
+env.config();
+
+
+// conncting to mongodb using mongoose
+mongoose.connect(process.env.MONGODB_URL,{useUnifiedTopology:true,useNewUrlParser:true},
 (err) => {
   console.log(err ? err : 'Database is connected');
 });
@@ -60,9 +56,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.use('/', require('./routes/index'));
 app.use('/user', require('./routes/user'));
-app.use('/stories',require('./routes/stories'))
-app.use('/dashboard',require('./routes/dashboard'))
-app.use('/logout',require('./routes/logout'))
+app.use('/stories',require('./routes/stories'));
+app.use('/dashboard',require('./routes/dashboard'));
+app.use('/logout',require('./routes/logout'));
+
 
 
 

@@ -7,6 +7,7 @@ let auth = require('../middlewares/auth');
 
 let userSchema = new Schema({
     name:{type:String,required:true},
+    profilePic:{type: String},
     email:{type:String,unique:true,required:true},
     password:{type:String,required:true}
 },{timestamps:true})
