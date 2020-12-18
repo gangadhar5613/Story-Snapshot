@@ -15,11 +15,13 @@
         </section>
         <section class="nav">
             <nav>
-                <ul class="text-white items-center flex flex-row justify-between text-2xl">
+                <ul class="text-white items-center flex flex-row justify-between text-1xl">
                     <li class="mx-4"><a href="/">Home</a></li>
                     <li class="mx-4 bg-white text-black p-1 "><a href="/stories">Stories</a></li>
                     <% if(loginOption == 'login'){  %>
                         <li class="mx-4"><a href="/user/<%= loginOption %>"><%= loginOption %></a></li>
+                        <li class="mx-4"><a href="/user/register">Register</a></li>
+
                   <%  }else{  %>
                         <li class="mx-4"><a href="/<%= loginOption %>"><%= loginOption %></a></li>
                         <li class="mx-4"><a href="/logout">LogOut</a></li>

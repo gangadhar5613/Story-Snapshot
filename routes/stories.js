@@ -80,13 +80,9 @@ router.get('/:id/edit',auth.verifyLoggedInUser,(req,res,next) => {
 
 
 //edit article
-router.post('/:id/edit',(req,res,next) => {
+router.post('/:id/edit',auth.verifyLoggedInUser,(req,res,next) => {
     let id = req.params.id
-    // Story.findOAndUpdate(id,req.body,{new:true},(err,updatedStory) => {
-    //     if(err) return next();
-    //     res.redirect('/dashboard');
-
-    // })
+   
    Story.findByIdAndUpdate(id,req.body,{new:true}, (err,updated) => {
        if(err) return next();
        res.redirect('/dashboard');
@@ -94,7 +90,7 @@ router.post('/:id/edit',(req,res,next) => {
 })
 
 //see story view
-router.get('/:id',(req,res) => {
+router.get('/:id',(req,res,next) => {
     let id = req.params.id
     // req.body.author = req.user;
     req.body.author = req.session.userID;
