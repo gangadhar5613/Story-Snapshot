@@ -23,7 +23,7 @@ var upload = multer({ storage : storage })
 
 
 //list all stories from different users
-router.get('/',auth.verifyLoggedInUser,(req, res, next) => {
+router.get('/',(req, res, next) => {
    
     Story.find({}).populate('author').exec((err,stories) => {
         if(err) return next();
@@ -60,9 +60,11 @@ router.post('/new',upload.single('snapshot'),auth.verifyLoggedInUser,(req,res,ne
 //edit story
 router.get('/:id/edit',auth.verifyLoggedInUser,(req,res,next) => {
     const id = req.params.id;
-    Story.findByIdAndUpdate(id,(err,story) => {
+    Story.findById(id,(err,story) => {
         if(err) return next();
         res.render('storyEdit',{story: story})
+        console.log('from edit page')
+        
     })
 })
 
@@ -70,11 +72,15 @@ router.get('/:id/edit',auth.verifyLoggedInUser,(req,res,next) => {
 //edit article
 router.post('/:id/edit',(req,res,next) => {
     let id = req.params.id
-    Story.findByIdAndRemove(id,req.body,{new:true},(err,updatedStory) => {
-        if(err) return next();
-        res.redirect('/userDashboard');
+    // Story.findOAndUpdate(id,req.body,{new:true},(err,updatedStory) => {
+    //     if(err) return next();
+    //     res.redirect('/dashboard');
 
-    })
+    // })
+   Story.findByIdAndUpdate(id,req.body,{new:true}, (err,updated) => {
+       if(err) return next();
+       res.redirect('/dashboard');
+   })
 })
 
 //see story view
@@ -93,21 +99,14 @@ router.get('/:id',auth.verifyLoggedInUser,(req,res) => {
    
 })
 
-// router.get('/:id/edit',(req,res,next) => {
-//     let id = req.params.id;
-//     Story.findById(id,(err,story) => {
-//         if(err) return next();
-//         res.render('storyEdit',{story : story})
-//     })
-    
-// })
 
 
 
 
 
 
-router.get('/:id/delete',(req,res,next) => {
+
+router.get('/:id/delete',auth.verifyLoggedInUser,(req,res,next) => {
     let id = req.params.id;
     Story.findByIdAndDelete(id,(err,deletedArticle) => {
         if(err) return next();

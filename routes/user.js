@@ -49,7 +49,7 @@ router.post('/login',(req,res,next) => {
         // req.flash('flashMsg',"Please enter valid details")
        return res.redirect('/user/login')
     }
-    req.session.userId = user.id;
+    req.session.userID = user.id;
     res.redirect('/dashboard');
     console.log(req.session.userId)
  })

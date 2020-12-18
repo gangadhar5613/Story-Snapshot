@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
       res.redirect('/user/login')
       
       console.log('dupli');
-      next();
+      
 
   })
 });
