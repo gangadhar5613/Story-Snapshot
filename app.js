@@ -2,13 +2,14 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-var logger = require("morgan")
+const logger = require("morgan")
 const env = require('dotenv');
 const bodyParser = require('body-parser')
 const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-var multer = require('multer');
+const multer = require('multer');
+const auth = require('./middlewares/auth')
 
 
 env.config();
@@ -54,7 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //routes
-app.use('/', require('./routes/index'));
+app.use('/',auth.currentLoggedInUser, require('./routes/index'));
 app.use('/user', require('./routes/user'));
 app.use('/stories',require('./routes/stories'));
 app.use('/dashboard',require('./routes/dashboard'));

@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       fontFamily:{
-        body:['Teko']
+        body:['Sniglet']
       }
     },    
   },

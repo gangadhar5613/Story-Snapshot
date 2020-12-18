@@ -44,7 +44,7 @@ router.get('/',(req, res, next) => {
     
   });
 
-router.get('/new',(req,res,next) => {
+router.get('/new',auth.verifyLoggedInUser,(req,res,next) => {
     res.render('addNewStory')
     
 })
@@ -115,15 +115,6 @@ router.get('/:id',(req,res) => {
                 res.render('storyView',{story : story ,comments : comments,stories : stories});
             })
        })
-        // Comment.find({articleId : id},(err,comments) => {
-        //     if(err) return next();
-        //     let tags =  story.tags[0] ;
-        //     story.tags =  tags.split(' ')   
-        //     Story.find({author: req.body.author},(err,stories) => {
-        //         if(err) return next();
-        //         res.render('storyView',{story : story,comments : comments,stories : stories});
-        //     })
-        // })
    })
 
 })
@@ -155,15 +146,20 @@ router.post('/:id/comments',auth.verifyLoggedInUser,(req,res,next) => {
     let currentUser = req.user;
     req.body.authorId = currentUser;
     console.log('here is the id' + req.body.authorId);
-  
-      Comment.create(req.body,(err,comment) => {
-          Story.findByIdAndUpdate(id,{$push : {comments : comment._id }},(err,story) => {
-            if(err) return next();       
-            res.redirect(`/stories/`+ id);
-            next();
-          }) 
-          })
-        
+    
+    if(req.body.authorId == null){
+        res.redirect('/user/login')
+    }else{
+        Comment.create(req.body,(err,comment) => {
+            Story.findByIdAndUpdate(id,{$push : {comments : comment._id }},(err,story) => {
+              if(err) return next();       
+              res.redirect(`/stories/`+ id);
+              next();
+            }) 
+            })
+          
+    }
+    
   })
 
 

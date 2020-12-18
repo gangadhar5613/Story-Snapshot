@@ -10,7 +10,7 @@
     <header class="flex flex-row bg-black justify-between items-center font-body ">
         <section class="logo-section w-30 px-3 py-1">
             <div class="">
-                <img class="w-3/12" src="/images/blacklogo.png" alt="snapshot logo">
+                <img class="w-3/12" src="/images/logo.png" alt="snapshot logo">
             </div>
         </section>
         <section class="nav">
@@ -35,7 +35,7 @@
             <section class="text-center my-5 ">
                 <h2 class="text-3xl font-bold">Explore many snapshots from different users</h2>
             </section>
-            <section class="grid grid-cols-2 mx-10 items-center justify-center border-solid border-3 border-light-blue-500 ">
+            <section class="grid grid-cols-2 gap-4  items-center justify-center border-solid border-3 border-light-blue-500 ">
             <% if(stories == ''){  %>
                 <h2 class="text-3xl text-center text-red-700  font-bold " >No stories yet,add a new story now</h2>
            <% }else{ %>
@@ -45,12 +45,12 @@
                         </div>
                         <div class="border-r border-b  border-l border-grey-light lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col ">
                             <div class="mb-8">
-                                <h3 class="text-black font-bold text-2xl"><a href="/stories/<%= story.id %>"><%=  story.title %></a></h3>
-                                <p class="text-grey-darker truncate py-1 font-semibold text-base"><a href="/stories/<%= story.id %>"><%= story.description.substring(0,70) %></a></p>
+                                <h3 class="text-green-800 text-2xl font-bold text-1xl"><a href="/stories/<%= story.id %>"><%=  story.title %></a></h3>
+                                <p class="text-grey-darker truncate py-1  text-base"><a href="/stories/<%= story.id %>"><%= story.description.substring(0,70) %></a></p>
                             <div class="flex items-center my-4">
                                 <img class="w-10 h-10 rounded-full mr-4" src="/images/upload/<%= story.snapshot%>" alt="Avatar of Jonathan Reinink">
                                 <div class="text-sm">
-                                  <p class="text-black font-bold py-1 leading-none"><%= story.author.name %></p>
+                                  <p class="text-red-700 font-bold py-1 leading-none"><%= story.author.name %></p>
                                   <p class="text-grey-dark"><%= story.createdAt %></p>
                                 </div>
                             </div>

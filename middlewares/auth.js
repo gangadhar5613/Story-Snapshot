@@ -19,13 +19,15 @@ module.exports = {
     },
 
    currentLoggedInUser :(req,res,next) => {
+       console.log('from home')
        if(req.session && req.session.userID){
            const userId = req.session.userID;
+
            User.findById(userId,{name:1,email:1},(err,user) => {
                  req.user = user;
                  next();
                  console.log('from current' + req.user)
-                 console.log('user id'+ req.user)
+                 console.log('user id from home'+ req.user)
            })
        }else{
            req.user = null;

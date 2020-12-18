@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Sniglet&display=swap');
 
 /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
@@ -11503,7 +11503,7 @@ video {
 }
 
 .font-body{
-  font-family: Teko;
+  font-family: Sniglet;
 }
 
 .font-thin{
@@ -42657,7 +42657,7 @@ video {
   }
 
   .sm\:font-body{
-    font-family: Teko;
+    font-family: Sniglet;
   }
 
   .sm\:font-thin{
@@ -73733,7 +73733,7 @@ video {
   }
 
   .md\:font-body{
-    font-family: Teko;
+    font-family: Sniglet;
   }
 
   .md\:font-thin{
@@ -104809,7 +104809,7 @@ video {
   }
 
   .lg\:font-body{
-    font-family: Teko;
+    font-family: Sniglet;
   }
 
   .lg\:font-thin{
@@ -135885,7 +135885,7 @@ video {
   }
 
   .xl\:font-body{
-    font-family: Teko;
+    font-family: Sniglet;
   }
 
   .xl\:font-thin{
@@ -166961,7 +166961,7 @@ video {
   }
 
   .\32xl\:font-body{
-    font-family: Teko;
+    font-family: Sniglet;
   }
 
   .\32xl\:font-thin{

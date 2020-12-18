@@ -10,13 +10,13 @@
     <header class="flex flex-row bg-black justify-between items-center font-body ">
         <section class="logo-section w-30 px-3 py-1">
             <div class="">
-                <img class="w-3/12" src="/images/blacklogo.png" alt="snapshot logo">
+                <img class="w-3/12" src="/images/logo.png" alt="snapshot logo">
             </div>
         </section>
         <section class="nav">
             <nav>
                 <ul class="text-white flex flex-row justify-between text-2xl">
-                    <li class="mx-4"><a href="#">Home</a></li>
+                    <li class="mx-4"><a href="/">Home</a></li>
                     <li class="mx-4"><a href="/stories">Stories</a></li>
                     <li class="mx-4"><a href="/user/profile/<%= currentUser.id %>">Profile</a></li>
                     <li class="mx-4"><a href="/logout">LogOut</a></li>
@@ -35,7 +35,7 @@
             <section class="text-center my-5 ">
                 <h2 class="text-3xl font-bold">My Stories</h2>
             </section>
-            <section class="grid grid-cols-2 mx-10 items-center justify-center border-solid border-3 border-light-blue-500 ">
+            <section class="grid grid-cols-2 gap-6  items-center justify-center border-solid border-3 border-light-blue-500 ">
             <% if(stories == ''){  %>
                 <h2 class="text-3xl text-center text-red-700  font-bold " >No stories yet,add a new story now</h2>
            <% }else{ %>
