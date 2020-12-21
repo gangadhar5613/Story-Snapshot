@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "tw:build": "tailwindcss build ./public/stylesheets/css/tailwind.css -o ./public/stylesheets/tailwind.css",
     "tw:watch": "onchange 'tailwind.config.js' 'public/stylesheets/**/*.css'  -- npm run tw:build -- node ./bin/www"
   },
