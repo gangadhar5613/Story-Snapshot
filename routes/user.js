@@ -67,7 +67,7 @@ router.post('/login',(req,res,next) => {
        return res.redirect('/user/login')
     }
     req.session.userID = user.id;
-    res.redirect('/dashboard');
+    res.redirect(`/user/profile/${req.session.userID}`);
     console.log(req.session.userId)
  })
  

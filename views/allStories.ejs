@@ -33,7 +33,7 @@
         </section>
     </header>
     <main class="font-body">
-          <article class="stories-section mx-10 my-10">
+          <!-- <article class="stories-section mx-10 my-10">
             <section class="text-center my-5 ">
                 <h2 class="text-3xl font-bold">Explore many snapshots from different users</h2>
             </section>
@@ -43,7 +43,7 @@
            <% }else{ %>
                 <% stories.forEach((story) => { %>
                     <section class="max-w-lg w-full lg:flex p-2 ">
-                        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-center bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden p-1" style="background-image: url('/images/upload/<%= story.snapshot %>')" title="its image">
+                        <div class=" w-96 h-40   bg-center  p-1" style="background-image: url('/images/upload/<%= story.snapshot %>')",  title="its image">
                         </div>
                         <div class="border-r border-b  border-l border-grey-light lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col ">
                             <div class="mb-8">
@@ -61,7 +61,44 @@
                 <% }) %> 
            <% } %>
             </section>
-          </article>
+          </article> -->
+     <article>
+        <section class="text-center my-5 ">
+            <h2 class="text-3xl font-bold">Explore many snapshots from different users</h2>
+        </section>
+        <section class=" mx-10 grid grid-cols-3 gap-4">
+            <%  if(stories == ' '){   %>
+                <h2 class="text-3xl text-center text-red-700  font-bold " >No stories yet,add a new story now</h2>
+          <%  }else{ %>
+            <%   stories.forEach((story) => {  %>
+                <section class="flex bg-white shadow-2xl rounded-lg mb-6 tracking-wide flex-col ">
+                    <div class=" flex-1 image-sec md:flex-shrink-0">
+                        <img class="w-full h-auto rounded-lg rounded-b-none" src="/images/upload/<%= story.snapshot %>" alt="snapshot image">
+                    </div>
+                    <div class="flex-initial px-4 py-2">
+                        <h2 class="title-class font-bold text-2xl text-red-600 py-2"><%= story.title %></h2>
+                        <p class="story-description font-normal py-2 truncate"><%= story.description.substring(0,80) %></p>
+                        <div class="options">
+                            <a href="/stories/<%= story.id %>" class="underline text-blue-600">Read More</a>
+                            
+                        </div>
+                        <div class="author-details my-2 flex flex-row">
+                            <div class="">
+                                <img class="w-12 h-12 mx-4 object-cover rounded-full " src = "/images/upload/<%= story.author.profilePic %>" alt="user profile pic">
+                            </div>
+                            <div class="author-name-time">
+                                <h2><%= story.author.name %></h2>
+                                <small><%= story.createdAt %></small>
+                            </div>
+                        </div>
+                    </div>
+                  </section>
+            <%   }) %>
+           <% }  %>
+        </section>
+
+
+     </article>
     </main>
 </body>
 </html>
