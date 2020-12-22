@@ -46,10 +46,6 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
-// app.use((req,res,next) => {
-//  console.log(req.session)
-//  next();
-// })
 app.use(express.static(path.join(__dirname, 'public')));
 
 
