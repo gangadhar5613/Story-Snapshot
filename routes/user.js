@@ -5,6 +5,7 @@ const flash = require('connect-flash');
 const auth = require('../middlewares/auth');
 let Story = require('../models/story');
 const { count } = require('../models/User');
+
 const multer = require('multer');
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {

@@ -9,9 +9,9 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const multer = require('multer');
-const auth = require('./middlewares/auth')
+const auth = require('./middlewares/auth');
 
-
+//config doenv 
 env.config();
 
 
